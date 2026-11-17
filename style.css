@@ -1,0 +1,530 @@
+```css
+/* =========================
+   GLOBAL SETTINGS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+    background: #1e3a5f;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 8%;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav ul li {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav ul li:hover {
+    color: #d6e8ff;
+}
+
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #1e3a5f,
+        #4c7caf
+    );
+
+    color: white;
+
+    text-align: center;
+
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 650px;
+    margin: auto;
+}
+
+
+/* =========================
+   TRIP PLANNER SECTION
+========================= */
+
+.planner-section {
+    padding: 50px 10%;
+}
+
+.planner-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.planner-title h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.planner-title p {
+    color: #666;
+}
+
+
+/* =========================
+   PLANNER BOX
+========================= */
+
+.planner {
+    background: white;
+
+    max-width: 850px;
+    margin: auto;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.1);
+}
+
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input,
+select {
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+input:focus,
+select:focus {
+    border-color: #1e3a5f;
+
+    box-shadow:
+        0 0 5px
+        rgba(30, 58, 95, 0.3);
+}
+
+
+/* =========================
+   INTEREST SECTION
+========================= */
+
+.interests {
+    margin-top: 30px;
+}
+
+.interests h3 {
+    margin-bottom: 12px;
+}
+
+.checkbox-container {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+}
+
+.checkbox-container label {
+    background: #f4f6f9;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: normal;
+
+    transition: 0.3s;
+}
+
+.checkbox-container label:hover {
+    background: #dce9f7;
+}
+
+.checkbox-container input {
+    margin-right: 5px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn {
+    margin-top: 30px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1e3a5f;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #142b47;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   RESULTS SECTION
+========================= */
+
+#results {
+    display: none;
+
+    padding: 50px 10%;
+
+    background: #eef2f6;
+}
+
+.results-container {
+    max-width: 1100px;
+
+    margin: auto;
+}
+
+.results-container > h2 {
+    text-align: center;
+}
+
+
+/* =========================
+   WEATHER BOX
+========================= */
+
+.weather-box {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.08);
+}
+
+.weather-box h3 {
+    margin-bottom: 10px;
+}
+
+.weather-box p {
+    margin-top: 5px;
+}
+
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+.summary-card {
+    background: #1e3a5f;
+
+    color: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.12);
+}
+
+.summary-card h3 {
+    margin-bottom: 10px;
+}
+
+.summary-card p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   PLACE GRID
+========================= */
+
+.places-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================
+   PLACE CARD
+========================= */
+
+.place-card {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.1);
+
+    transition: 0.3s;
+}
+
+.place-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.15);
+}
+
+.place-card h3 {
+    margin-bottom: 12px;
+
+    color: #1e3a5f;
+}
+
+.place-card p {
+    margin: 6px 0;
+}
+
+.rating {
+    font-size: 17px;
+
+    font-weight: bold;
+
+    margin-top: 12px !important;
+}
+
+
+/* =========================
+   ROUTE SECTION
+========================= */
+
+.route {
+    background: white;
+
+    padding: 25px;
+
+    margin-top: 35px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.1);
+}
+
+.route h2 {
+    margin-bottom: 15px;
+}
+
+.route-item {
+    padding: 14px;
+
+    border-left:
+        5px solid #1e3a5f;
+
+    margin: 12px 0;
+
+    background: #f4f6f9;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   CAFE SECTION
+========================= */
+
+.cafe-section {
+    margin-top: 40px;
+}
+
+.cafe-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 50px;
+
+    background: #1e3a5f;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 15px 5%;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 15px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .planner-section {
+        padding: 40px 5%;
+    }
+
+    .planner {
+        padding: 25px 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    #results {
+        padding: 40px 5%;
+    }
+
+}
+```

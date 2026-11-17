@@ -1,0 +1,1075 @@
+
+<html lang="en">
+
+<head>
+     <link rel="stylesheet" href="./style.css">
+     <script src="script.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>City Explorer | Smart Trip Planner</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background: #1e3a5f;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            background: linear-gradient(135deg, #1e3a5f, #4c7caf);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        /* PLANNER */
+
+        .planner-section {
+            padding: 50px 10%;
+        }
+
+        .planner-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .planner {
+            background: white;
+            max-width: 850px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        /* INTERESTS */
+
+        .interests {
+            margin-top: 25px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-container label {
+            font-weight: normal;
+        }
+
+        /* BUTTON */
+
+        .btn {
+            margin-top: 30px;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #1e3a5f;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #142b47;
+        }
+
+        /* RESULTS */
+
+        #results {
+            display: none;
+            padding: 50px 10%;
+        }
+
+        .results-container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .weather-box {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: #1e3a5f;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        /* PLACE CARDS */
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .place-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .place-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            margin-top: 10px;
+        }
+
+        /* ROUTE */
+
+        .route {
+            background: white;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .route-item {
+            padding: 12px;
+            border-left: 4px solid #1e3a5f;
+            margin: 10px 0;
+            background: #f4f6f9;
+        }
+
+        /* CAFES */
+
+        .cafe-section {
+            margin-top: 35px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 50px;
+            background: #1e3a5f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        🏙️ City Explorer
+    </div>
+
+    <ul>
+        <li>Home</li>
+        <li>Explore</li>
+        <li>Plan Trip</li>
+        <li>About</li>
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>Explore Smarter. Travel Better.</h1>
+
+    <p>
+        Plan your perfect city trip according to your
+        budget, time and interests.
+    </p>
+
+</section>
+
+
+<!-- TRIP PLANNER -->
+
+<section class="planner-section">
+
+    <div class="planner-title">
+
+        <h2>Plan Your Trip</h2>
+
+        <p>Tell us your preferences and we will recommend the best places!</p>
+
+    </div>
+
+
+    <div class="planner">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Select City</label>
+
+                <select id="city">
+
+                    <option value="Lucknow">
+                        Lucknow
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Your Budget (₹)</label>
+
+                <input
+                    type="number"
+                    id="budget"
+                    placeholder="Example: 1000"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Available Time (Hours)</label>
+
+                <input
+                    type="number"
+                    id="time"
+                    placeholder="Example: 6"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Travel Date</label>
+
+                <input
+                    type="date"
+                    id="date"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- INTERESTS -->
+
+        <div class="interests">
+
+            <h3>What do you want to explore?</h3>
+
+            <div class="checkbox-container">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Historical"
+                        class="interest"
+                    >
+
+                    🏛️ Historical Places
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Park"
+                        class="interest"
+                    >
+
+                    🌳 Parks
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Food"
+                        class="interest"
+                    >
+
+                    🍽️ Food
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Cafe"
+                        class="interest"
+                    >
+
+                    ☕ Cafés
+                </label>
+
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Shopping"
+                        class="interest"
+                    >
+
+                    🛍️ Shopping
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="btn"
+            onclick="generateTrip()"
+        >
+
+            ✨ Generate My Smart Trip
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- RESULTS -->
+
+<section id="results">
+
+    <div class="results-container">
+
+        <h2>Your Smart Trip Plan 🚀</h2>
+
+        <br>
+
+
+        <!-- WEATHER -->
+
+        <div class="weather-box">
+
+            <h3>🌦️ Weather Forecast</h3>
+
+            <p id="weatherText">
+
+                Sunny | 28°C
+
+            </p>
+
+            <p id="weatherAdvice">
+
+                Perfect weather for sightseeing!
+
+            </p>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary">
+
+            <div class="summary-card">
+
+                <h3>💰 Estimated Cost</h3>
+
+                <p id="totalCost">
+                    ₹0
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>⏰ Total Time</h3>
+
+                <p id="totalTime">
+                    0 Hours
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>📍 Places</h3>
+
+                <p id="placeCount">
+                    0
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLACES -->
+
+        <h2>⭐ Recommended Places</h2>
+
+        <br>
+
+        <div
+            class="places-grid"
+            id="placesContainer"
+        >
+        </div>
+
+
+        <!-- ROUTE -->
+
+        <div class="route">
+
+            <h2>🗺️ Suggested Route</h2>
+
+            <br>
+
+            <div id="routeContainer">
+
+            </div>
+
+        </div>
+
+
+        <!-- CAFES -->
+
+        <div class="cafe-section">
+
+            <h2>☕ Recommended Cafés</h2>
+
+            <br>
+
+            <div
+                class="places-grid"
+                id="cafeContainer"
+            >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+        © 2026 City Explorer |
+        Smart Travel Recommendation System
+    </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+
+/* ===========================
+   PLACE DATA
+=========================== */
+
+const places = [
+
+    {
+
+        name: "Bara Imambara",
+
+        category: "Historical",
+
+        rating: 4.7,
+
+        cost: 50,
+
+        time: 2,
+
+        location: "Old Lucknow"
+
+    },
+
+
+    {
+
+        name: "Rumi Darwaza",
+
+        category: "Historical",
+
+        rating: 4.6,
+
+        cost: 0,
+
+        time: 1,
+
+        location: "Old Lucknow"
+
+    },
+
+
+    {
+
+        name: "Chota Imambara",
+
+        category: "Historical",
+
+        rating: 4.6,
+
+        cost: 25,
+
+        time: 1.5,
+
+        location: "Husainabad"
+
+    },
+
+
+    {
+
+        name: "Janeshwar Mishra Park",
+
+        category: "Park",
+
+        rating: 4.5,
+
+        cost: 20,
+
+        time: 2,
+
+        location: "Gomti Nagar"
+
+    },
+
+
+    {
+
+        name: "Hazratganj",
+
+        category: "Shopping",
+
+        rating: 4.5,
+
+        cost: 500,
+
+        time: 2,
+
+        location: "Central Lucknow"
+
+    },
+
+
+    {
+
+        name: "Ambedkar Memorial Park",
+
+        category: "Park",
+
+        rating: 4.4,
+
+        cost: 20,
+
+        time: 1.5,
+
+        location: "Gomti Nagar"
+
+    }
+
+];
+
+
+
+/* ===========================
+   CAFE DATA
+=========================== */
+
+const cafes = [
+
+    {
+
+        name: "Café Hazelnut",
+
+        rating: 4.5,
+
+        cost: 400,
+
+        location: "Hazratganj"
+
+    },
+
+
+    {
+
+        name: "The Cherry Tree Café",
+
+        rating: 4.4,
+
+        cost: 350,
+
+        location: "Gomti Nagar"
+
+    },
+
+
+    {
+
+        name: "Cappuccino Blast",
+
+        rating: 4.3,
+
+        cost: 300,
+
+        location: "Hazratganj"
+
+    }
+
+];
+
+
+
+/* ===========================
+   GENERATE TRIP
+=========================== */
+
+function generateTrip() {
+
+
+    /* GET USER INPUT */
+
+    let budget = Number(
+        document.getElementById("budget").value
+    );
+
+
+    let availableTime = Number(
+        document.getElementById("time").value
+    );
+
+
+    /* GET SELECTED INTERESTS */
+
+    let selectedInterests = [];
+
+
+    document
+        .querySelectorAll(".interest:checked")
+        .forEach(function(item) {
+
+            selectedInterests.push(item.value);
+
+        });
+
+
+
+    /* VALIDATION */
+
+    if (!budget || !availableTime) {
+
+        alert(
+            "Please enter your budget and available time!"
+        );
+
+        return;
+
+    }
+
+
+
+    /* FILTER BY INTEREST */
+
+    let filteredPlaces =
+        places.filter(function(place) {
+
+            return selectedInterests.includes(
+                place.category
+            );
+
+        });
+
+
+
+    /* IF NO INTEREST SELECTED */
+
+    if (selectedInterests.length === 0) {
+
+        filteredPlaces = places;
+
+    }
+
+
+
+    /* SORT BY RATING */
+
+    filteredPlaces.sort(function(a, b) {
+
+        return b.rating - a.rating;
+
+    });
+
+
+
+    /* SMART RECOMMENDATION */
+
+    let recommendedPlaces = [];
+
+
+    let totalCost = 0;
+
+    let totalTime = 0;
+
+
+
+    filteredPlaces.forEach(function(place) {
+
+
+        if (
+
+            totalCost + place.cost <= budget
+
+            &&
+
+            totalTime + place.time <= availableTime
+
+        ) {
+
+
+            recommendedPlaces.push(place);
+
+
+            totalCost += place.cost;
+
+
+            totalTime += place.time;
+
+
+        }
+
+    });
+
+
+
+    /* SHOW RESULTS */
+
+    document.getElementById(
+        "results"
+    ).style.display = "block";
+
+
+    /* SUMMARY */
+
+    document.getElementById(
+        "totalCost"
+    ).innerText = "₹" + totalCost;
+
+
+    document.getElementById(
+        "totalTime"
+    ).innerText = totalTime + " Hours";
+
+
+    document.getElementById(
+        "placeCount"
+    ).innerText = recommendedPlaces.length;
+
+
+
+    /* DISPLAY PLACES */
+
+    let placesContainer = document.getElementById(
+        "placesContainer"
+    );
+
+
+    placesContainer.innerHTML = "";
+
+
+    recommendedPlaces.forEach(function(place) {
+
+
+        placesContainer.innerHTML += `
+
+            <div class="place-card">
+
+                <h3>
+                    📍 ${place.name}
+                </h3>
+
+                <p>
+                    Category: ${place.category}
+                </p>
+
+                <p>
+                    Location: ${place.location}
+                </p>
+
+                <p>
+                    Entry Cost: ₹${place.cost}
+                </p>
+
+                <p>
+                    Estimated Time:
+                    ${place.time} Hours
+                </p>
+
+                <p class="rating">
+                    ⭐ ${place.rating}
+                </p>
+
+            </div>
+
+        `;
+
+    });
+
+
+
+    /* ROUTE */
+
+    let routeContainer =
+        document.getElementById(
+            "routeContainer"
+        );
+
+
+    routeContainer.innerHTML = "";
+
+
+    recommendedPlaces.forEach(
+        function(place, index) {
+
+
+            routeContainer.innerHTML += `
+
+                <div class="route-item">
+
+                    ${index + 1}.
+                    📍 ${place.name}
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+
+    /* CAFE RECOMMENDATIONS */
+
+    let cafeContainer =
+        document.getElementById(
+            "cafeContainer"
+        );
+
+
+    cafeContainer.innerHTML = "";
+
+
+    let suitableCafes =
+        cafes.filter(function(cafe) {
+
+            return cafe.cost <=
+                (budget - totalCost);
+
+        });
+
+
+    suitableCafes.sort(function(a, b) {
+
+        return b.rating - a.rating;
+
+    });
+
+
+
+    suitableCafes.slice(0, 3).forEach(
+        function(cafe) {
+
+
+            cafeContainer.innerHTML += `
+
+                <div class="place-card">
+
+                    <h3>
+                        ☕ ${cafe.name}
+                    </h3>
+
+                    <p>
+                        📍 ${cafe.location}
+                    </p>
+
+                    <p>
+                        💰 Average Cost:
+                        ₹${cafe.cost}
+                    </p>
+
+                    <p class="rating">
+
+                        ⭐ ${cafe.rating}
+
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+
+    /* WEATHER */
+
+    document.getElementById(
+        "weatherText"
+    ).innerText =
+
+        "☀️ Sunny | 28°C";
+
+
+    document.getElementById(
+        "weatherAdvice"
+    ).innerText =
+
+        "Great weather for sightseeing and outdoor places!";
+
+
+    /* SCROLL TO RESULTS */
+
+    document.getElementById(
+        "results"
+    ).scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+
+}
+
+</script>
+
+
+</body>
+
+</html>
